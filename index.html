@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
 <title>Ahmed Store | الطلب عبر واتساب</title>
-<style>
+<style id="app-styles">
 *{box-sizing:border-box} :root{--navy:#071b3c;--navy2:#0d2a56;--green:#2f6b4f;--gold:#ae8857;--gold2:#c6a36d;--cream:#f6efe4;--paper:#fffdf8;--line:#d8d0c4;--muted:#6f747c}
 html{scroll-behavior:smooth} body{margin:0;font-family:Arial,Tahoma,sans-serif;background:linear-gradient(180deg,var(--navy),var(--paper) 55%,var(--paper));color:var(--navy);min-height:100vh}
 button{border:0;border-radius:14px;padding:12px 18px;cursor:pointer;font-weight:800;transition:.2s;font-family:inherit}button:hover{transform:translateY(-2px)}
@@ -134,8 +134,7 @@ header{background:linear-gradient(100deg,#102a43,#173f60 65%,#214f72)!important;
 #brandSplash img{background:#fff!important;box-shadow:0 0 70px #102a4322!important}.splash-name{color:#102a43!important}
 .notice{background:#fff8eb!important;color:var(--navy)!important;border-color:#c8a96b!important}
 .modal{background:rgba(16,42,67,.48)!important}
-</style>
-<style>
+
 /* Accessibility and modal fixes */
 .notice-box h2,.notice-box p,.notice-box b,.notice-box div,.thanks-box h2,.thanks-box p,.thanks-box div{color:#102a43!important;opacity:1!important;text-shadow:none!important}
 .notice-box .primary,.notice-box button{color:#fff!important}
@@ -145,9 +144,7 @@ header{background:linear-gradient(100deg,#102a43,#173f60 65%,#214f72)!important;
 .modal-size-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:12px!important;margin-top:18px!important}
 .modal-size-btn{display:flex!important;align-items:center!important;justify-content:center!important;min-height:58px!important;padding:14px!important;background:#fff!important;color:#102a43!important;border:2px solid #c8a96b!important;border-radius:14px!important;font-size:18px!important;font-weight:800!important;opacity:1!important;visibility:visible!important}
 .modal-size-btn.active{background:#102a43!important;color:#fff!important;border-color:#102a43!important}
-</style>
 
-<style id="final-user-visual-fix">
 :root{--navy:#102a43;--navy2:#183e63;--paper:#fffdf8;--line:#d8cdbb;--muted:#102a43;--gold:#d6a44a;--gold2:#e0b65c}
 body{background:#f4efe5!important;color:var(--navy)!important;font-family:Arial,"Tahoma",sans-serif!important}
 body *{font-family:inherit}
@@ -167,9 +164,7 @@ body p,body label,body span,body small,body h1,body h2,body h3,body h4,body h5,b
 .modal-size-btn.active{background:var(--navy)!important;color:#fff!important}
 #floatingOrder{bottom:82px!important;z-index:150!important;display:none!important} #floatingOrder.show{display:flex!important}
 #supportWhatsApp{bottom:18px!important;z-index:151!important}
-</style>
 
-<style id="final-ui-fixes">
 /* Final visual rules: cream/white surfaces use navy text; navy surfaces use white text. */
 body,.container,.box,.card,.invoice,.pending-item,.order-card,.stat,.section-admin,.admin-item,.group-card,.group-body,.select-product,.notice-box,.notice,.admin-lock,.delivery-box,.choice,.delivery-option,.share-box,.flow-note,.field label,.muted,.step-pill,.welcome,.subtotals,.cart-row{color:var(--navy)!important}
 .hero,header,.primary,.success,.floating-order,.delivery-trigger,.size-trigger,.modal-size-btn.active,.delivery-option.active,.tab.active,.gold,.admin-btn.primary,.navy-surface{color:#fff!important}
@@ -215,14 +210,14 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
 #deliveryPickerList .delivery-option{position:relative;z-index:10003!important;pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;}
 #supportWhatsApp{left:auto!important;right:12px!important;bottom:12px!important;width:auto!important;min-width:0!important;padding:9px 13px!important;font-size:12px!important;line-height:1.25!important;border-radius:11px!important;z-index:2147483647!important;}
 @media(max-width:600px){#supportWhatsApp{right:10px!important;bottom:10px!important;padding:8px 11px!important;font-size:11px!important;border-radius:10px!important;}}
-</style>
-<style>.size-admin-grid{display:grid;grid-template-columns:repeat(5,minmax(55px,1fr));gap:8px}.size-admin-check{display:flex;align-items:center;justify-content:center;gap:5px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-weight:800}.size-admin-check input{accent-color:#0b2341}.stock-admin-row{display:flex;gap:8px;flex-wrap:wrap}.stock-admin-btn{border:1px solid var(--line);background:#fff;color:#0b2341;padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer}.stock-admin-btn.active{background:#0b2341;color:#fff}.product-soldout{opacity:.48;filter:grayscale(.55);position:relative}.soldout-badge{position:absolute;top:10px;right:10px;background:rgba(90,90,90,.82);color:#fff;padding:6px 9px;border-radius:999px;font-size:12px;font-weight:800}.modal-size-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.modal-size-btn small{font-size:10px}.modal-size-btn.size-soldout{opacity:.38;filter:grayscale(1);cursor:not-allowed}@media(max-width:600px){.size-admin-grid{grid-template-columns:repeat(3,1fr)}}</style><style id="other-section-button-fix">
+
+.size-admin-grid{display:grid;grid-template-columns:repeat(5,minmax(55px,1fr));gap:8px}.size-admin-check{display:flex;align-items:center;justify-content:center;gap:5px;padding:10px;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-weight:800}.size-admin-check input{accent-color:#0b2341}.stock-admin-row{display:flex;gap:8px;flex-wrap:wrap}.stock-admin-btn{border:1px solid var(--line);background:#fff;color:#0b2341;padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer}.stock-admin-btn.active{background:#0b2341;color:#fff}.product-soldout{opacity:.48;filter:grayscale(.55);position:relative}.soldout-badge{position:absolute;top:10px;right:10px;background:rgba(90,90,90,.82);color:#fff;padding:6px 9px;border-radius:999px;font-size:12px;font-weight:800}.modal-size-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px}.modal-size-btn small{font-size:10px}.modal-size-btn.size-soldout{opacity:.38;filter:grayscale(1);cursor:not-allowed}@media(max-width:600px){.size-admin-grid{grid-template-columns:repeat(3,1fr)}}
+
 /* زر طلب من قسم آخر: نفس هوية أزرار السابق/طلب الآن، صغير وداخل التدفق */
 #offers .other-section-btn{display:flex!important;align-items:center!important;justify-content:center!important;width:min(220px,82%)!important;min-width:170px!important;max-width:220px!important;min-height:48px!important;padding:10px 16px!important;margin:8px auto 14px!important;font-size:15px!important;line-height:1.25!important;font-weight:900!important;border-radius:14px!important;box-shadow:0 8px 20px rgba(7,27,60,.14)!important;white-space:nowrap!important;background:linear-gradient(135deg,#102a43,#1d4c72)!important;color:#fff!important;border:2px solid #1d4c72!important;cursor:pointer!important;}
 #offers .other-section-btn:hover{transform:translateY(-1px);box-shadow:0 10px 24px rgba(7,27,60,.2)!important;}
 @media(max-width:600px){#offers .other-section-btn{width:190px!important;min-width:190px!important;max-width:190px!important;min-height:46px!important;padding:9px 12px!important;font-size:14px!important;margin:8px auto 14px!important;}}
-</style>
-<style id="latest-wholesale-ui-fixes">
+
 #invoice .wholesale-discount-row{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important}
 #invoice .wholesale-discount-label{font-size:16px!important;font-weight:800!important;line-height:1.35!important}
 #invoice .wholesale-discount-value{font-size:23px!important;font-weight:900!important;color:#176b43!important;direction:ltr!important;unicode-bidi:isolate!important;white-space:nowrap!important}
@@ -231,7 +226,9 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
 #invoice .wholesale-total-value{font-size:21px!important;font-weight:900!important;color:var(--navy)!important;direction:ltr!important;unicode-bidi:isolate!important;white-space:nowrap!important}
 .wholesale-qty-note{display:block!important;margin:6px 0 0!important;font-size:11px!important;line-height:1.5!important;font-weight:700!important;color:#7b6335!important;text-align:center!important}
 .modal-color-btn .color-swatch:not(.color-mixed-swatch){display:none!important}
-</style><style id="user-final-visual-fixes">#supportWhatsApp{position:fixed!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important;width:128px!important;min-width:0!important;max-width:128px!important;padding:6px 7px!important;font-size:10px!important;line-height:1.15!important;border-radius:9px!important;z-index:2147483647!important;white-space:normal!important;text-align:center!important;transform:none!important}@media(max-width:600px){#supportWhatsApp{top:8px!important;right:8px!important;width:122px!important;max-width:122px!important;padding:5px 6px!important;font-size:9px!important}}.hero .mini-logo{display:block!important;width:min(330px,90vw)!important;height:auto!important;max-height:170px!important;min-height:110px!important;object-fit:contain!important;object-position:center!important;margin:0 auto 12px!important;padding:6px!important;background:#fff!important;border-radius:14px!important;overflow:visible!important}.wholesale-note{margin:12px auto 0!important;padding:9px 14px!important;width:fit-content!important;max-width:90%!important;border-radius:12px!important;background:#fff2cf!important;border:1px solid #d6b15c!important;color:#6d4b00!important;font-weight:800!important;text-align:center!important}#offers .section-title h2,#offers .section-title h3,#offers .section-title .muted,#offers #count,#offers .studio-meta b,#offers .studio-meta span{color:var(--navy)!important;opacity:1!important;text-shadow:none!important}#offers .section-title h2{font-weight:900!important}#offers .studio-meta span{font-weight:700!important}#orderModal .box{max-height:calc(100vh - 18px)!important;overflow-y:auto!important;overscroll-behavior:contain!important}#orderModal .box>.back-btn{position:sticky!important;top:0!important;z-index:50!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;margin-top:0!important;margin-bottom:12px!important;min-height:48px!important;opacity:1!important;visibility:visible!important}</style><style id="offers-vertical-image-view">
+
+#supportWhatsApp{position:fixed!important;top:8px!important;right:8px!important;left:auto!important;bottom:auto!important;width:128px!important;min-width:0!important;max-width:128px!important;padding:6px 7px!important;font-size:10px!important;line-height:1.15!important;border-radius:9px!important;z-index:2147483647!important;white-space:normal!important;text-align:center!important;transform:none!important}@media(max-width:600px){#supportWhatsApp{top:8px!important;right:8px!important;width:122px!important;max-width:122px!important;padding:5px 6px!important;font-size:9px!important}}.hero .mini-logo{display:block!important;width:min(330px,90vw)!important;height:auto!important;max-height:170px!important;min-height:110px!important;object-fit:contain!important;object-position:center!important;margin:0 auto 12px!important;padding:6px!important;background:#fff!important;border-radius:14px!important;overflow:visible!important}.wholesale-note{margin:12px auto 0!important;padding:9px 14px!important;width:fit-content!important;max-width:90%!important;border-radius:12px!important;background:#fff2cf!important;border:1px solid #d6b15c!important;color:#6d4b00!important;font-weight:800!important;text-align:center!important}#offers .section-title h2,#offers .section-title h3,#offers .section-title .muted,#offers #count,#offers .studio-meta b,#offers .studio-meta span{color:var(--navy)!important;opacity:1!important;text-shadow:none!important}#offers .section-title h2{font-weight:900!important}#offers .studio-meta span{font-weight:700!important}#orderModal .box{max-height:calc(100vh - 18px)!important;overflow-y:auto!important;overscroll-behavior:contain!important}#orderModal .box>.back-btn{position:sticky!important;top:0!important;z-index:50!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;margin-top:0!important;margin-bottom:12px!important;min-height:48px!important;opacity:1!important;visibility:visible!important}
+
 /* عروض الزبون: تصفح رأسي */
 #offers .studio-strip{display:grid!important;grid-template-columns:1fr!important;gap:16px!important;overflow:visible!important;padding:4px 0 18px!important;scroll-snap-type:none!important}
 #offers .studio-item{width:100%!important;max-width:620px!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;flex:initial!important;scroll-snap-align:none!important;cursor:default!important}
@@ -246,14 +243,11 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
 .image-view-controls{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:10px}
 .image-view-controls button{background:#e8e0d4;color:var(--navy);min-width:52px}
 @media(max-width:600px){#offers .studio-item img,.studio-noimg{height:220px!important}.image-view-stage{max-height:72vh}.image-view-box{padding:10px!important}}
-</style>
-<style>
+
 .whatsapp-action{display:flex;align-items:center;justify-content:center;gap:8px;}
 .whatsapp-icon{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;background:#25D366!important;color:#fff!important;border-radius:50%;flex:0 0 auto;box-shadow:0 1px 4px rgba(0,0,0,.18);padding:3px;box-sizing:border-box;}
 .whatsapp-icon svg{width:100%;height:100%;display:block;} .whatsapp-icon svg path{fill:#fff!important;}
-</style>
 
-<style id="other-section-button-final-layout">
 /* زر طلب من قسم آخر: صغير، تحت السابق، ومحاذٍ له بدون تغطية أي عنصر */
 #offers .section-title{position:relative!important;}
 #offers .section-title>div:first-child{position:relative!important;padding-bottom:84px!important;}
@@ -262,15 +256,11 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
  #offers .section-title>div:first-child{padding-bottom:80px!important;}
  #offers .section-title .other-section-btn{right:0!important;top:80px!important;width:180px!important;min-width:180px!important;max-width:180px!important;height:44px!important;min-height:44px!important;font-size:13px!important;padding:7px 9px!important;}
 }
-</style>
 
-<style id="customer-no-admin-header">
 /* Customer site: no admin/header or small logo */
 #customerHeaderHidden, body > header, header { display:none!important; }
 .hero .mini-logo { display:none!important; }
-</style>
 
-<style id="professional-category-layout">
 #categoryModal .box{max-width:680px!important;padding:24px!important}
 #categoryModal .choice-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:14px!important;margin-top:22px!important}
 #categoryModal .category-card{position:relative!important;min-height:132px!important;padding:18px 44px 18px 18px!important;border-radius:20px!important;border:1px solid #d7cbb8!important;background:linear-gradient(145deg,#fffdf9,#f3ecdf)!important;color:#102a43!important;display:flex!important;flex-direction:column!important;align-items:flex-start!important;justify-content:center!important;gap:7px!important;text-align:right!important;box-shadow:0 8px 24px rgba(16,42,67,.07)!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important}
@@ -284,18 +274,14 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
 .section-create-head{display:flex;align-items:center;gap:12px;margin-bottom:12px}
 .section-create-icon{width:42px;height:42px;border-radius:13px;background:#102a43;color:#fff;display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:900}
 @media(max-width:620px){#categoryModal .choice-grid{grid-template-columns:1fr!important;gap:12px!important}#categoryModal .category-card{min-height:112px!important;padding:15px 44px 15px 15px!important}#categoryModal .category-card-title{font-size:18px!important}#categoryModal .category-card-icon{width:44px!important;height:44px!important;font-size:24px!important}}
-</style>
 
-<style>
 /* Section availability + cleaner section presentation */
 .category-unavailable{opacity:.42!important;filter:grayscale(.7);cursor:not-allowed!important;transform:none!important;box-shadow:none!important}
 .category-unavailable:hover{transform:none!important;border-color:#d9d1c4!important;box-shadow:none!important}
 .category-unavailable .category-card-title,.category-unavailable .category-card-sub,.category-unavailable .category-card-icon{color:#7b8794!important}
 .section-admin-disabled{opacity:.68}
 .section-admin-disabled .muted{color:#9a6b22!important;font-weight:800}
-</style>
 
-<style>
 /* Professional admin section cards */
 .admin-open .section-admin{position:relative;padding:18px 20px;border-radius:18px;background:linear-gradient(135deg,#fffdf9,#f6f1e7);border:1px solid #d9d1c4;box-shadow:0 8px 24px rgba(16,42,67,.07);transition:.2s}
 .admin-open .section-admin:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(16,42,67,.11)}
@@ -307,9 +293,7 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
 .admin-open .section-admin-disabled{background:linear-gradient(135deg,#f0eee9,#e5e1da);filter:saturate(.65)}
 .admin-open .section-admin-disabled:before{content:'غير متوفر';position:absolute;top:12px;left:14px;font-size:11px;font-weight:900;color:#8a6a35;background:#fff7e8;border:1px solid #d8bd8c;border-radius:999px;padding:4px 8px}
 @media(max-width:600px){.admin-open .section-admin-row{align-items:stretch;flex-direction:column}.admin-open .section-admin-row>div:last-child{justify-content:stretch}.admin-open .section-admin .small-btn{flex:1;min-width:0}}
-</style>
 
-<style id="latest-customer-request-fixes">
 /* Mixed wholesale color: look like the normal color buttons until selected. */
 .modal-color-btn.mixed-choice{background:#fffdf8!important;color:var(--navy)!important;border-color:var(--navy)!important;}
 .modal-color-btn.mixed-choice.active{background:var(--navy)!important;color:#fff!important;border-color:var(--navy)!important;}
@@ -321,8 +305,7 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
 @media(max-width:600px){.modal-size-btn{height:60px!important;min-height:60px!important;max-height:60px!important;font-size:19px!important;}}
 /* Wholesale minimum/quantity guidance above the counter. */
 .wholesale-start-note{display:block!important;margin:3px 0 7px!important;font-size:12px!important;line-height:1.5!important;font-weight:800!important;color:#7b6335!important;text-align:center!important;}
-</style>
-<style id="facebook-final-order">
+
 /* Facebook follow button on the final order-complete screen */
 .facebook-follow-note{margin-top:13px!important;margin-bottom:7px!important;color:var(--navy)!important;font-size:12px!important;line-height:1.5!important;font-weight:800!important;text-align:center!important;}
 .facebook-store-btn{width:100%;box-sizing:border-box;display:flex;align-items:center;justify-content:center;gap:9px;margin-top:6px;padding:11px 14px;border-radius:11px;background:#fffdf8!important;color:#0b2345!important;border:2px solid #0b2345!important;text-decoration:none!important;font-weight:900;font-size:14px;line-height:1.2;box-shadow:none!important;transition:transform .15s ease,filter .15s ease;}
@@ -335,6 +318,406 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
 .thanks-note{font-size:12px!important;line-height:1.5!important;padding:8px 10px!important;}
 .home-after-order-btn{font-size:14px!important;}
 @media(max-width:600px){.facebook-follow-note{font-size:11px!important}.facebook-store-btn{font-size:13px;padding:10px 12px;}.thanks-box h2{font-size:23px!important}.thanks-box>p{font-size:20px!important}.thanks-mark{font-size:15px!important}.home-after-order-btn{font-size:13px!important;}}
+
+/* Dedicated fixed support area: never overlaps modals or page content */
+body{padding-bottom:56px!important;}
+#supportDock{position:fixed!important;left:0!important;right:0!important;bottom:0!important;height:52px!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;padding:5px 10px!important;background:#fffdf8!important;border-top:1px solid #d9d1c4!important;box-shadow:0 -4px 16px rgba(11,35,69,.10)!important;z-index:20!important;direction:rtl!important;}
+#supportWhatsApp{position:static!important;transform:none!important;width:auto!important;min-width:0!important;max-width:210px!important;height:40px!important;margin:0!important;padding:7px 12px!important;background:#0b2345!important;color:#fff!important;border:0!important;border-radius:10px!important;font-size:12px!important;line-height:1.1!important;box-shadow:none!important;display:flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;}
+#supportWhatsApp.show{display:flex!important;}
+body.final-invoice-open #supportDock,body.thanks-open #supportDock{display:none!important;}
+/* Floating order: small, bottom-left */
+#floatingOrder{left:12px!important;right:auto!important;bottom:62px!important;width:auto!important;min-width:132px!important;max-width:155px!important;height:46px!important;padding:8px 13px!important;border-radius:13px!important;background:#0b2345!important;color:#fff!important;border:0!important;z-index:25!important;font-size:14px!important;box-shadow:0 8px 20px rgba(11,35,69,.25)!important;}
+#floatingOrder.show{display:flex!important;align-items:center!important;justify-content:center!important;gap:6px!important;}
+body.final-invoice-open #floatingOrder,body.thanks-open #floatingOrder{display:none!important;visibility:hidden!important;}
+/* Hero logo/title readability */
+.hero .mini-logo{display:block!important;width:min(340px,88vw)!important;height:auto!important;min-height:130px!important;max-height:220px!important;object-fit:contain!important;background:#fff!important;margin:0 auto 14px!important;}
+.hero h1{color:#fff!important;opacity:1!important;text-shadow:none!important;font-weight:900!important;}
+.hero p{color:#fff!important;opacity:1!important;}
+/* Size picker */
+#sizePickerModal .back-btn{color:#0b2345!important;opacity:1!important;background:#f3ede2!important;border:2px solid #0b2345!important;}
+#sizePickerModal h2{color:#0b2345!important;opacity:1!important;}
+#sizePickerModal .notice-icon{display:none!important;}
+#sizePickerModal .modal-size-btn{color:#0b2345!important;opacity:1!important;}
+#sizePickerModal .modal-size-btn.active{color:#fff!important;background:#0b2345!important;}
+#sizePickerModal .modal-size-btn.size-soldout{color:#657083!important;opacity:.45!important;}
+/* Quantity + / - */
+.qty-control{display:flex!important;align-items:center!important;justify-content:center!important;gap:16px!important;margin-top:6px!important;}
+.qty-btn{width:46px!important;height:42px!important;padding:0!important;border-radius:12px!important;background:#0b2345!important;color:#fff!important;font-size:28px!important;line-height:1!important;font-weight:900!important;}
+.qty-value{min-width:48px!important;text-align:center!important;font-size:22px!important;font-weight:900!important;color:#0b2345!important;}
+@media(max-width:600px){#supportDock{height:50px!important;padding:5px 8px!important;}#supportWhatsApp{max-width:190px!important;height:38px!important;font-size:11px!important;}#floatingOrder{left:10px!important;bottom:60px!important;min-width:125px!important;max-width:145px!important;height:44px!important;font-size:13px!important;}.hero .mini-logo{width:min(320px,90vw)!important;min-height:120px!important;max-height:190px!important;}}
+
+.order-back-under-confirm{display:flex!important;width:100%!important;margin-top:10px!important;justify-content:center!important;background:#eee7dc!important;color:#0b2345!important;border:2px solid #0b2345!important;}
+.admin-order-item{display:flex;gap:10px;align-items:center;padding:8px 0;border-bottom:1px solid #d9d1c4}.admin-order-item img{width:58px;height:58px;object-fit:cover;border-radius:9px;flex:0 0 58px}.order-head{display:flex;justify-content:space-between;gap:8px;align-items:center;margin-bottom:8px}.order-info{line-height:1.9}.admin-order-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:12px}.admin-order-actions button{margin:0}.invoice-save-box{text-align:center;max-width:500px!important}.invoice-save-box p{color:#7a4b00!important;background:#fff2cf;border:1px solid #e5c36b;border-radius:12px;padding:12px;font-weight:800}.thanks-modal-box{max-width:520px!important}.thanks-note{color:#7a4b00!important;background:#fff2cf!important}
+
+.order-status-chooser{text-align:center;padding:8px 0 14px}.order-status-grid{display:grid;gap:12px}.order-status-grid .choice{min-height:62px;font-size:17px;font-weight:800;color:#0b2345!important;background:#fffdf8!important;border:2px solid #d9d1c4!important}.order-status-grid .choice:hover{border-color:#b9974a!important}
+
+.order-city-filter{margin:10px 0 14px;padding:10px;border:1px solid var(--line);border-radius:12px;background:#fffdf8}.order-city-filter label{display:block;font-weight:800;margin-bottom:6px;color:#0b2345}.order-city-filter select{width:100%;padding:11px;border:1px solid var(--line);border-radius:10px;background:#fff;color:#0b2345;font-weight:700}
+
+/* Support is customer-facing only, in its own separated bottom area. */
+#supportDock{position:fixed!important;left:0!important;right:0!important;bottom:0!important;height:50px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:5px 8px!important;background:#fffdf8!important;border-top:1px solid #d9d1c4!important;box-shadow:0 -4px 16px rgba(11,35,69,.10)!important;z-index:2147483000!important;direction:rtl!important;}
+#supportWhatsApp{position:static!important;width:auto!important;min-width:0!important;max-width:240px!important;height:38px!important;margin:0!important;padding:7px 12px!important;background:#0b2345!important;color:#fff!important;border:0!important;border-radius:10px!important;font-size:11px!important;line-height:1.15!important;box-shadow:none!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;white-space:nowrap!important;}
+#supportWhatsApp.show{display:flex!important;}
+.support-wa-icon{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:19px!important;height:19px!important;color:#25D366!important;flex:0 0 19px!important;}
+.support-wa-icon svg{width:19px!important;height:19px!important;display:block!important;}
+/* Never show the customer support bar inside the administration panel. */
+#adminModal.open ~ #supportDock{display:none!important;}
+body.final-invoice-open #supportDock,body.thanks-open #supportDock{display:flex!important;visibility:visible!important;}
+@media(max-width:600px){#supportDock{height:49px!important;padding:5px 7px!important;}#supportWhatsApp{max-width:220px!important;height:37px!important;padding:6px 10px!important;font-size:10.5px!important;gap:6px!important;} .support-wa-icon,.support-wa-icon svg{width:18px!important;height:18px!important;flex-basis:18px!important;}}
+
+/* CLEAN FINAL CUSTOMER SUPPORT BAR */
+html,body{box-sizing:border-box!important;}
+body{padding-bottom:64px!important;}
+#supportDock{
+ position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+ width:100%!important;height:60px!important;box-sizing:border-box!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:6px 10px!important;margin:0!important;
+ background:#fffdf8!important;border-top:2px solid #d6a44a!important;
+ box-shadow:0 -5px 18px rgba(11,35,69,.16)!important;
+ z-index:2147483646!important;direction:rtl!important;
+ visibility:visible!important;opacity:1!important;
+}
+#supportWhatsApp{
+ position:static!important;display:flex!important;visibility:visible!important;opacity:1!important;
+ width:auto!important;min-width:0!important;max-width:260px!important;height:42px!important;
+ margin:0!important;padding:6px 14px!important;box-sizing:border-box!important;
+ background:#0b2345!important;color:#fff!important;border:0!important;border-radius:10px!important;
+ font-size:11px!important;line-height:1.15!important;font-weight:800!important;
+ align-items:center!important;justify-content:center!important;gap:7px!important;
+ white-space:nowrap!important;text-align:center!important;pointer-events:auto!important;
+}
+#supportWhatsApp .support-wa-icon{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;flex:0 0 20px!important;color:#25D366!important;}
+#supportWhatsApp .support-wa-icon svg{display:block!important;width:20px!important;height:20px!important;color:#25D366!important;fill:#25D366!important;}
+#supportWhatsApp .support-wa-icon svg path{fill:#25D366!important;}
+/* Only these states hide the support bar. */
+body.admin-open #supportDock,body.final-invoice-open #supportDock,body.thanks-open #supportDock{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+/* Reserve the same bottom area while customer modals are open. */
+body:not(.admin-open):not(.final-invoice-open):not(.thanks-open) .modal .box{margin-bottom:8px!important;}
+@media(max-width:600px){
+ body{padding-bottom:62px!important;}
+ #supportDock{height:62px!important;padding:6px 8px!important;}
+ #supportWhatsApp{height:40px!important;max-width:245px!important;padding:6px 11px!important;font-size:10.5px!important;border-radius:9px!important;gap:6px!important;}
+ #supportWhatsApp .support-wa-icon,#supportWhatsApp .support-wa-icon svg{width:19px!important;height:19px!important;flex-basis:19px!important;}
+}
+
+html,body{box-sizing:border-box!important}
+body{padding-bottom:64px!important}
+#supportDock{
+ position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+ width:100%!important;height:64px!important;box-sizing:border-box!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:7px 8px!important;margin:0!important;
+ background:#fffdf8!important;border-top:2px solid #0b2345!important;
+ box-shadow:0 -3px 14px rgba(11,35,69,.14)!important;
+ z-index:2147483646!important;visibility:visible!important;opacity:1!important;
+ direction:rtl!important;
+}
+#supportWhatsApp{
+ display:flex!important;visibility:visible!important;opacity:1!important;position:static!important;
+ align-items:center!important;justify-content:center!important;gap:7px!important;
+ width:auto!important;max-width:245px!important;height:42px!important;
+ padding:7px 12px!important;margin:0!important;border:0!important;border-radius:10px!important;
+ background:#0b2345!important;color:#fff!important;font-size:11px!important;font-weight:800!important;
+ line-height:1.15!important;white-space:nowrap!important;box-shadow:0 3px 8px rgba(11,35,69,.18)!important;
+}
+#supportWhatsApp .support-wa-icon{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;flex:0 0 20px!important;color:#25D366!important}
+#supportWhatsApp .support-wa-icon svg{width:20px!important;height:20px!important;display:block!important}
+#supportWhatsApp .support-wa-icon svg path{fill:#25D366!important}
+body.admin-open #supportDock,body.final-invoice-open #supportDock,body.thanks-open #supportDock{display:none!important;visibility:hidden!important;pointer-events:none!important}
+@media(max-width:600px){body{padding-bottom:60px!important}#supportDock{height:60px!important;padding:6px 7px!important}#supportWhatsApp{height:39px!important;max-width:235px!important;font-size:10.5px!important;padding:6px 10px!important}.modal .box{margin-bottom:6px!important}}
+
+/* Customer support: dedicated bottom strip, never part of the admin UI. */
+#supportDock{
+ position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;
+ width:100%!important;height:58px!important;box-sizing:border-box!important;
+ display:flex!important;align-items:center!important;justify-content:center!important;
+ padding:6px 10px!important;margin:0!important;
+ background:#fffdf8!important;border-top:2px solid #d6b15c!important;
+ box-shadow:0 -4px 14px rgba(7,27,60,.14)!important;
+ z-index:2147483000!important;direction:rtl!important;
+}
+#supportWhatsApp{
+ position:static!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;
+ display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;
+ width:auto!important;min-width:0!important;max-width:260px!important;height:40px!important;
+ margin:0!important;padding:7px 14px!important;box-sizing:border-box!important;
+ background:#0b2345!important;color:#fff!important;border:0!important;border-radius:10px!important;
+ font-size:11px!important;line-height:1.15!important;font-weight:800!important;
+ align-items:center!important;justify-content:center!important;gap:7px!important;
+ white-space:nowrap!important;text-align:center!important;
+}
+#supportWhatsApp .support-wa-icon{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;flex:0 0 20px!important;color:#25D366!important;}
+#supportWhatsApp .support-wa-icon svg{display:block!important;width:20px!important;height:20px!important;}
+/* The entire strip is hidden while administration is open. */
+#adminModal.open ~ #supportDock{display:none!important;}
+/* Keep it available on checkout/thank-you/customer interfaces too. */
+body.final-invoice-open #supportDock,body.thanks-open #supportDock{display:flex!important;visibility:visible!important;}
+body{padding-bottom:58px!important;}
+@media(max-width:600px){
+ #supportDock{height:56px!important;padding:5px 8px!important;}
+ #supportWhatsApp{height:38px!important;max-width:235px!important;padding:6px 11px!important;font-size:10.5px!important;border-radius:9px!important;gap:6px!important;}
+ #supportWhatsApp .support-wa-icon,#supportWhatsApp .support-wa-icon svg{width:19px!important;height:19px!important;flex-basis:19px!important;}
+ body{padding-bottom:56px!important;}
+}
+
+#supportWhatsApp{right:12px!important;bottom:12px!important;padding:10px 14px!important;font-size:12px!important;max-width:240px!important;white-space:normal!important;text-align:center!important;}
+#adminModal{z-index:20000!important;}#adminModal .box{z-index:20001!important;}
+body.final-invoice-open #supportWhatsApp, body.thanks-open #supportWhatsApp{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+.final-item{display:flex;align-items:center;gap:10px;text-align:right;padding:9px 0;border-bottom:1px solid var(--line);}
+.final-item-thumb{width:58px;height:58px;object-fit:cover;border-radius:10px;border:1px solid var(--line);background:#fff;flex:0 0 58px;}
+.final-item-info{flex:1;}
+@media(max-width:600px){#supportWhatsApp{right:8px!important;bottom:8px!important;padding:9px 11px!important;font-size:11px!important;max-width:210px!important;}}
+
+#supportWhatsApp{position:fixed!important;top:10px!important;right:10px!important;left:auto!important;bottom:auto!important;width:auto!important;min-width:0!important;max-width:145px!important;padding:5px 8px!important;font-size:9px!important;line-height:1.2!important;border-radius:8px!important;z-index:2147483647!important;}
+body.final-invoice-open #supportWhatsApp, body.thanks-open #supportWhatsApp{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+.thanks-modal-box{max-width:520px!important;text-align:center!important;}
+.thanks-note{margin-top:14px;padding:10px 12px;border-radius:10px;background:#fff2cf;color:#7a4b00;font-weight:700;border:1px solid #e5c36b;}
+#thanksWhatsAppBtn{width:100%;margin-top:14px;}
+@media(max-width:600px){#supportWhatsApp{top:9px!important;right:9px!important;padding:5px 8px!important;font-size:9px!important;max-width:145px!important;}}
+
+header{position:sticky!important;top:0!important;z-index:30000!important;}
+.nav{position:relative!important;z-index:30001!important;}
+.admin-btn{position:relative!important;z-index:30002!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;opacity:1!important;visibility:visible!important;pointer-events:auto!important;background:#ffffff!important;color:#071a36!important;border:2px solid #d6a44a!important;box-shadow:0 4px 14px rgba(0,0,0,.18)!important;min-width:105px!important;min-height:44px!important;}
+.admin-btn:hover{background:#efc56b!important;color:#071a36!important;}#adminModal{z-index:40000!important;pointer-events:auto!important;}
+#adminModal .box{position:relative!important;z-index:40001!important;pointer-events:auto!important;}
+#adminModal.open{display:flex!important;pointer-events:auto!important;}
+
+
+
+/* ترتيب واجهة اختيار التوصيل/الاستلام على الهاتف والكمبيوتر */
+#serviceChoiceModal .box.welcome{
+  width:min(92vw,620px)!important;
+  margin:0 auto!important;
+  padding:28px 22px 30px!important;
+  text-align:center!important;
+}
+#serviceChoiceModal .choices{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:12px!important;
+  width:100%!important;
+  margin:22px auto 0!important;
+}
+#serviceChoiceModal .choices > div,
+#serviceChoiceModal .choices > button{
+  width:min(100%,380px)!important;
+  margin:0 auto!important;
+}
+#serviceChoiceModal .choices .choice{
+  width:100%!important;
+  min-height:100px!important;
+  margin:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+#serviceChoiceModal .service-delivery-note{
+  margin:5px 0 0!important;
+  font-size:10px!important;
+  line-height:1.5!important;
+  font-weight:600!important;
+  text-align:center!important;
+  color:#8a682d!important;
+}
+#serviceChoiceModal .notice-icon{display:none!important}
+#serviceChoiceModal h2{margin:8px 0 10px!important;line-height:1.45!important}
+#serviceChoiceModal .muted{margin:0!important;line-height:1.7!important}
+
+.admin-offer-filter{margin:12px 0 8px!important;padding:12px!important;background:#fffdf8!important;border:1px solid #d9d1c4!important;border-radius:14px!important}
+.admin-offer-filter select{width:100%!important;min-height:46px!important;border-radius:10px!important;padding:8px 12px!important;background:#fff!important;color:#0b2345!important}
+.age-admin-label{font-size:12px!important;font-weight:700!important;color:#8a682d!important;white-space:nowrap!important}
+
+.modal-size-btn .age-label{display:block!important;margin-top:4px!important;font-size:13px!important;font-weight:800!important;line-height:1.2!important;color:#7a4b00!important;opacity:1!important;}
+.modal-size-btn.size-soldout .age-label{color:#657083!important;}
+.home-after-order-btn{width:100%!important;margin-top:12px!important;background:#fffdf8!important;color:#0b2345!important;border:2px solid #0b2345!important;}
+
+.size-admin-check span{white-space:nowrap}.size-admin-check .age-admin-label{display:inline!important;margin-inline-start:3px!important;font-size:inherit!important}
+
+/* Support area: permanently separated at the very bottom of every site interface. */
+#supportDock{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100%!important;height:54px!important;display:flex!important;align-items:center!important;justify-content:flex-start!important;box-sizing:border-box!important;padding:6px 10px!important;margin:0!important;background:#fffdf8!important;border-top:1px solid #d9d1c4!important;box-shadow:0 -4px 16px rgba(11,35,69,.12)!important;z-index:2147483000!important;direction:rtl!important;}
+#supportWhatsApp{position:static!important;top:auto!important;right:auto!important;left:auto!important;bottom:auto!important;transform:none!important;width:auto!important;min-width:0!important;max-width:240px!important;height:40px!important;margin:0!important;padding:7px 14px!important;box-sizing:border-box!important;background:#0b2345!important;color:#fff!important;border:0!important;border-radius:10px!important;font-size:12px!important;line-height:1.15!important;box-shadow:none!important;display:flex!important;align-items:center!important;justify-content:center!important;white-space:nowrap!important;text-align:center!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;}
+#supportWhatsApp.show{display:flex!important;visibility:visible!important;}
+body{padding-bottom:54px!important;}
+body.final-invoice-open #supportDock,body.thanks-open #supportDock{display:flex!important;visibility:visible!important;pointer-events:auto!important;}
+@media(max-width:600px){#supportDock{height:52px!important;padding:5px 8px!important;}#supportWhatsApp{height:38px!important;max-width:220px!important;padding:6px 11px!important;font-size:11px!important;border-radius:9px!important;}body{padding-bottom:52px!important;}}
+
+/* Definitive customer-support dock: reserves a small, separate bottom area. */
+body{padding-bottom:58px!important;}
+#supportDock{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100%!important;height:58px!important;box-sizing:border-box!important;margin:0!important;padding:5px 10px!important;background:#fffdf8!important;border-top:2px solid #d6a44a!important;box-shadow:0 -5px 18px rgba(11,35,69,.14)!important;z-index:2147483001!important;display:flex!important;align-items:center!important;justify-content:center!important;direction:rtl!important;}
+#supportWhatsApp{position:static!important;width:auto!important;max-width:240px!important;height:42px!important;margin:0!important;padding:6px 14px!important;box-sizing:border-box!important;background:#0b2345!important;color:#fff!important;border:0!important;border-radius:10px!important;font-size:11px!important;line-height:1.1!important;font-weight:800!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:7px!important;white-space:nowrap!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;}
+#supportWhatsApp .support-wa-icon{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;flex:0 0 20px!important;color:#25D366!important;}
+#supportWhatsApp .support-wa-icon svg{display:block!important;width:20px!important;height:20px!important;color:#25D366!important;fill:#25D366!important;}
+#supportWhatsApp .support-wa-icon svg path{fill:#25D366!important;}
+#supportWhatsApp.show{display:flex!important;}
+/* The dock is hidden only in administration and after the order is confirmed. */
+body.admin-open #supportDock{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+body.final-invoice-open #supportDock,body.thanks-open #supportDock{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+/* Keep the bottom support area visually separate from every customer modal. */
+body:not(.admin-open) .modal{padding-bottom:72px!important;}
+@media(max-width:600px){body{padding-bottom:54px!important;}#supportDock{height:54px!important;padding:5px 8px!important;}#supportWhatsApp{height:39px!important;max-width:230px!important;padding:6px 11px!important;font-size:10.5px!important;border-radius:9px!important;gap:6px!important;}#supportWhatsApp .support-wa-icon,#supportWhatsApp .support-wa-icon svg{width:19px!important;height:19px!important;flex-basis:19px!important;}}
+
+/* FINAL OVERRIDE - dedicated customer support strip */
+body{padding-bottom:64px!important;}
+#supportDock{position:fixed!important;left:0!important;right:0!important;bottom:0!important;top:auto!important;width:100%!important;height:60px!important;display:flex!important;visibility:visible!important;opacity:1!important;align-items:center!important;justify-content:center!important;box-sizing:border-box!important;padding:6px 10px!important;margin:0!important;background:#fffdf8!important;border-top:2px solid #d6a44a!important;box-shadow:0 -5px 18px rgba(11,35,69,.16)!important;z-index:2147483647!important;direction:rtl!important;}
+#supportWhatsApp{position:static!important;top:auto!important;right:auto!important;bottom:auto!important;left:auto!important;transform:none!important;display:flex!important;visibility:visible!important;opacity:1!important;pointer-events:auto!important;width:auto!important;min-width:0!important;max-width:260px!important;height:42px!important;margin:0!important;padding:6px 14px!important;box-sizing:border-box!important;background:#0b2345!important;color:#fff!important;border:0!important;border-radius:10px!important;font-size:11px!important;line-height:1.15!important;font-weight:800!important;align-items:center!important;justify-content:center!important;gap:7px!important;white-space:nowrap!important;text-align:center!important;}
+#supportWhatsApp .support-wa-icon{display:inline-flex!important;align-items:center!important;justify-content:center!important;width:20px!important;height:20px!important;flex:0 0 20px!important;color:#25D366!important;}
+#supportWhatsApp .support-wa-icon svg{display:block!important;width:20px!important;height:20px!important;color:#25D366!important;fill:#25D366!important;}
+#supportWhatsApp .support-wa-icon svg path{fill:#25D366!important;}
+body.admin-open #supportDock,body.final-invoice-open #supportDock,body.thanks-open #supportDock{display:none!important;visibility:hidden!important;pointer-events:none!important;}
+@media(max-width:600px){body{padding-bottom:62px!important;}#supportDock{height:62px!important;padding:6px 8px!important;}#supportWhatsApp{height:40px!important;max-width:245px!important;padding:6px 11px!important;font-size:10.5px!important;border-radius:9px!important;gap:6px!important;}#supportWhatsApp .support-wa-icon,#supportWhatsApp .support-wa-icon svg{width:19px!important;height:19px!important;flex-basis:19px!important;}}
+
+/* النص داخل زر الدعم أبيض بالكامل */
+#supportWhatsApp,
+#supportWhatsApp span,
+#supportWhatsApp > span:last-child,
+#supportWhatsApp .support-wa-icon + span{color:#fff!important;}
+
+/* مساحة حقيقية أسفل محتوى واجهات الطلب حتى لا يغطيها شريط الدعم الثابت */
+body:not(.admin-open):not(.final-invoice-open):not(.thanks-open){
+  padding-bottom:76px!important;
+}
+body:not(.admin-open):not(.final-invoice-open):not(.thanks-open) main.container{
+  padding-bottom:76px!important;
+}
+
+/* إذا كانت الواجهة داخل نافذة منبثقة قابلة للتمرير، اترك مساحة أسفل آخر عنصر أيضاً */
+body:not(.admin-open):not(.final-invoice-open):not(.thanks-open) .modal.open .box{
+  padding-bottom:86px!important;
+}
+
+@media(max-width:600px){
+  body:not(.admin-open):not(.final-invoice-open):not(.thanks-open){padding-bottom:68px!important;}
+  body:not(.admin-open):not(.final-invoice-open):not(.thanks-open) main.container{padding-bottom:68px!important;}
+  body:not(.admin-open):not(.final-invoice-open):not(.thanks-open) .modal.open .box{padding-bottom:78px!important;}
+  #supportWhatsApp,
+  #supportWhatsApp span,
+  #supportWhatsApp > span:last-child{color:#fff!important;}
+}
+
+/* Final compact support bar + safe page spacing */
+body:not(.admin-open):not(.final-invoice-open):not(.thanks-open){
+  padding-bottom:56px!important;
+  padding-top:0!important;
+}
+#supportDock{
+  height:50px!important;
+  min-height:50px!important;
+  padding:4px 8px!important;
+  box-sizing:border-box!important;
+  background:#fffdf8!important;
+}
+#supportWhatsApp{
+  height:34px!important;
+  min-height:34px!important;
+  padding:4px 10px!important;
+  font-size:10px!important;
+  line-height:1!important;
+  border-radius:8px!important;
+  gap:5px!important;
+  color:#fff!important;
+}
+#supportWhatsApp span,#supportWhatsApp > span:last-child{color:#fff!important;font-size:10px!important;}
+#supportWhatsApp svg{width:16px!important;height:16px!important;flex:0 0 16px!important;}
+body:not(.admin-open):not(.final-invoice-open):not(.thanks-open) main.container{
+  padding-bottom:56px!important;
+}
+body:not(.admin-open):not(.final-invoice-open):not(.thanks-open) .modal.open .box{
+  padding-bottom:62px!important;
+  box-sizing:border-box!important;
+}
+/* Keep the top logo/header from covering content */
+body:not(.admin-open) .container,
+body:not(.admin-open) main.container{
+  scroll-margin-top:8px!important;
+}
+/* WhatsApp: open with the requested automatic message */
+
+/* Keep the image viewer close button compact and inside the image modal, without covering the upper content. */
+#offerImageModal .image-view-box{
+  position:relative!important;
+  box-sizing:border-box!important;
+  padding:48px 12px 12px!important;
+  max-height:calc(100vh - 24px)!important;
+  overflow:auto!important;
+}
+#offerImageModal .image-view-close{
+  position:absolute!important;
+  top:8px!important;
+  right:8px!important;
+  float:none!important;
+  z-index:30!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:auto!important;
+  min-width:74px!important;
+  height:34px!important;
+  margin:0!important;
+  padding:5px 9px!important;
+  box-sizing:border-box!important;
+  font-size:12px!important;
+  line-height:1!important;
+  border-radius:8px!important;
+}
+#offerImageModal #offerImageTitle{margin:0 0 10px!important;padding:0!important;}
+@media(max-width:600px){
+  #offerImageModal .image-view-box{padding:46px 9px 10px!important;max-height:calc(100vh - 16px)!important;}
+  #offerImageModal .image-view-close{top:7px!important;right:7px!important;min-width:68px!important;height:32px!important;font-size:11px!important;padding:5px 8px!important;}
+}
+
+/* After returning from the final order screen, the customer city screen must sit above the sticky header/admin layer. */
+#cityModal.open{
+  display:flex!important;
+  visibility:visible!important;
+  opacity:1!important;
+  position:fixed!important;
+  inset:0!important;
+  z-index:29999!important;
+  pointer-events:auto!important;
+}
+#cityModal.open .box,
+#cityModal.open .welcome,
+#cityModal.open #cityChoices,
+#cityModal.open #cityChoices *{
+  pointer-events:auto!important;
+}
+/* Keep the support bar at the bottom only; it must not block the city choices above it. */
+#supportDock{top:auto!important;bottom:0!important;}
+
+/* Return to customer home without covering the existing header/logo/admin button. */
+body:not(.admin-open) #cityModal.open{
+  z-index:29999!important;
+  pointer-events:auto!important;
+}
+body:not(.admin-open) #cityModal.open .box{pointer-events:auto!important;}
+body:not(.admin-open) #cityModal.open #cityChoices,
+body:not(.admin-open) #cityModal.open #cityChoices .choice{pointer-events:auto!important;position:relative;}
+header{z-index:30000!important;}
+.nav{z-index:30001!important;}
+.admin-btn{z-index:30002!important;}
+
+/* Keep the existing header/logo/admin visible while the customer home is active. */
+  header{position:sticky!important;top:0!important;z-index:30000!important;pointer-events:auto!important;}
+  header .nav{position:relative!important;z-index:30001!important;pointer-events:auto!important;}
+  header .brand-logo{pointer-events:auto!important;}
+  header .admin-btn{position:relative!important;z-index:30002!important;pointer-events:auto!important;}
+
+  /* The customer modal stays just below the header, but its own content remains clickable. */
+  body.customer-home-active #cityModal.open{
+    display:flex!important;visibility:visible!important;opacity:1!important;
+    position:fixed!important;inset:0!important;z-index:29999!important;
+    pointer-events:auto!important;
+  }
+  body.customer-home-active #cityModal.open .box{pointer-events:auto!important;}
+  body.customer-home-active #cityModal.open #cityChoices{pointer-events:auto!important;}
+  body.customer-home-active #cityModal.open #cityChoices .choice{
+    pointer-events:auto!important;cursor:pointer!important;touch-action:manipulation!important;
+  }
+
+#adminBtn,.admin-btn,#adminModal{display:none!important}
 </style>
 </head>
 <body>
@@ -373,18 +756,4 @@ label,p,span,small,div,h1,h2,h3,h4,h5,h6{opacity:1}
 <div id="productsTab"><button class="success" onclick="newProduct()">+ إضافة عرض</button><div class="field admin-offer-filter"><label for="adminCategoryFilter">🗂️ تصنيف العروض</label><select id="adminCategoryFilter" onchange="renderAdmin()"><option value="all">كل الأقسام</option></select></div><p class="muted">استخدم خانة <b>مجموعة السعر</b> لجمع عدة عروض في مجموعة واحدة. الأفضل أن تكون عروض المجموعة بنفس السعر.</p><div class="admin-list" id="adminList"></div></div>
 <div id="ordersTab" style="display:none"><div id="ordersChooser" class="order-status-chooser"><h3>📦 الطلبات</h3><p class="muted">اختر القسم الذي تريد عرضه:</p><div class="order-status-grid"><button type="button" class="choice" onclick="showOrderSection('current')">📦 الطلبات الحالية</button><button type="button" class="choice" onclick="showOrderSection('success')">✅ الطلبات الناجحة</button><button type="button" class="choice" onclick="showOrderSection('deleted')">🗑️ الطلبات المحذوفة</button></div></div><div id="ordersSectionCurrent" style="display:none"><button type="button" class="secondary small-btn" onclick="showOrderChooser()">↩️ رجوع لاختيار الطلبات</button><h3>📦 الطلبات الحالية</h3><div class="order-city-filter"><label>🏙️ تصنيف حسب المدينة / الإرسالية</label><select id="currentOrdersCityFilter" onchange="renderOrders()"></select></div><div id="ordersList" class="admin-list"></div></div><div id="ordersSectionSuccess" style="display:none"><button type="button" class="secondary small-btn" onclick="showOrderChooser()">↩️ رجوع لاختيار الطلبات</button><h3>✅ الطلبات الناجحة</h3><div class="order-city-filter"><label>🏙️ تصنيف حسب المدينة / الإرسالية</label><select id="successOrdersCityFilter" onchange="renderSuccessfulOrders()"></select></div><div id="successOrdersList" class="admin-list"></div></div><div id="ordersSectionDeleted" style="display:none"><button type="button" class="secondary small-btn" onclick="showOrderChooser()">↩️ رجوع لاختيار الطلبات</button><h3>🗑️ الطلبات المحذوفة</h3><div id="deletedOrdersList" class="admin-list"></div></div></div>
 <div id="sectionsTab" style="display:none"><h3>إدارة الأقسام</h3><p class="muted">أنشئ الأقسام ونظّم ظهورها في واجهة المتجر.</p><div id="sectionsList"></div><div class="section-admin section-create-card"><div class="section-create-head"><span class="section-create-icon">＋</span><div><b>إضافة قسم جديد</b><div class="muted">اسم القسم والأيقونة</div></div></div><div class="field"><label>اسم قسم جديد</label><input id="newSectionName" placeholder="مثال: ملابس داخلية"></div><div class="field"><label>الأيقونة</label><input id="newSectionIcon" placeholder="مثال: 🩲"></div><div class="field"><label>📏 مقاسات القسم</label><input id="newSectionSizes" placeholder="مثال: S, M, L, XL أو 6, 8, 10, 12"><div class="muted">اكتب المقاسات مفصولة بفواصل، وستظهر هذه المقاسات للزبون كخيارات.</div></div><button class="success" onclick="addSection()">➕ إضافة القسم</button></div></div>
-<div id="statsTab" style="display:none"><h3> إحصائيات الزيارات</h3><div id="statsContent"></div><p class="muted">هذه الإحصائيات محلية في النسخة الحالية. بعد نشر الموقع بقاعدة بيانات ستصبح الإحصائيات مركزية لجميع الزوار.</p></div>
-<div id="discountsTab" style="display:none"><div class="share-box"><h3 style="margin-top:0">🏷️ تخفيضات الجملة</h3><p class="muted">هذه التخفيضات تطبق فقط عندما يختار العميل «جملة». الحد الأدنى للجملة 12 قطعة.</p><div class="row"><div class="field"><label>تخفيض الدستة الأولى</label><input id="wholesaleDozenDiscount" type="number" min="0" step="1000" placeholder="30000"></div><div class="field"><label>تخفيض كل دستة إضافية</label><input id="wholesaleAdditionalDiscount" type="number" min="0" step="1000" placeholder="15000"></div></div><div class="field"><label>عدد القطع في الدستة</label><input id="wholesaleMinQty" type="number" min="12" step="1" value="12"></div><div class="notice">مثال: إذا كان سعر القطعة 60,000 جنيه، فـ12 قطعة تحصل على خصم الدستة، وكل دستة إضافية كاملة تحصل على التخفيض الإضافي المحدد هنا.</div><button class="success" onclick="saveWholesaleDiscounts()">💾 حفظ تخفيضات الجملة</button></div></div>
-<div id="settingsTab"><div class="field"><label>اسم المتجر</label><input id="shopName"></div><div class="field"><label>رقم واتساب (بالصيغة الدولية بدون +)</label><input id="waNumber" placeholder="2499xxxxxxxx"></div><div class="share-box"><b>رابط الموقع</b><p class="muted">يستخدم أيضًا لإنشاء QR Code داخل الفاتورة.</p><div class="field"><label>رابط الموقع العام</label><input id="publicUrl" placeholder="https://example.com"></div><button class="gold" onclick="shareSite()">مشاركة / نسخ الرابط</button></div><hr style="border-color:var(--line);margin:20px 0"><h3>إدارة الفروع</h3><p class="muted">يمكنك إضافة فروع جديدة مستقبلًا، ولكل فرع مناطق وأسعار توصيل ووصف للاستلام الحضوري.</p><div id="branchesAdmin"></div><div class="branch-admin"><div class="field"><label>اسم الفرع الجديد</label><input id="newBranchName" placeholder="مثال: كسلا"></div><button class="success" onclick="addBranch()">إضافة فرع</button></div><div class="share-box"><b>إشعارات الطلبات</b><p class="muted">يمكن تفعيل إشعارات المتصفح على جهاز الإدارة.</p><button class="secondary" onclick="requestAdminNotifications()">تفعيل الإشعارات</button></div><button class="success" onclick="saveSettings()">حفظ الإعدادات</button></div>
-
-<div class="modal" id="editModal"><div class="box"><button class="close" onclick="closeModal('editModal')">إغلاق</button><h2 id="editTitle">إضافة عرض</h2><input type="hidden" id="editId"><div class="field"><label>القسم</label><select id="pCategory"></select></div><div class="field"><label>مجموعة السعر</label><input id="pGroup" placeholder="مثال: بيجامات 40 ألف"><div class="muted">العروض التي تحمل نفس اسم المجموعة تظهر للزبون كمجموعة صور واحدة.</div></div><div class="field"><label>اسم العرض</label><input id="pName"></div><div class="row"><div class="field"><label>السعر</label><input id="pPrice" type="number"></div><div class="field"><label>صورة العرض</label><input id="pImage" type="hidden"><input id="pImageFile" type="file" accept="image/*" onchange="previewImage(event)"><div class="muted" style="font-size:12px;margin-top:5px">📷 يمكنك رفع صورة حتى 10 ميجابايت، وسيتم ضغطها تلقائيًا للحفاظ على سرعة الموقع.</div><div id="imagePreview" style="margin-top:10px;display:none"><img id="previewImg" style="width:100%;max-height:220px;object-fit:cover;border-radius:12px"><button type="button" class="secondary" style="margin-top:8px" onclick="clearImage()">إزالة الصورة</button></div></div></div><div class="field"><label>📏 المقاسات المتوفرة</label><p class="muted" style="margin:4px 0 8px">اختر القسم ثم علّم المقاسات المتوفرة حاليًا.</p><div id="pSizesChecks" class="size-admin-grid"></div><input id="pSizes" type="hidden"></div><div class="field"><label>🎨 الألوان المتوفرة (اكتبها يدويًا)</label><textarea id="pColors" rows=3 placeholder="أحمر
-أزرق
-أسود | #000000"></textarea><div class="muted">اكتب لونًا في كل سطر. ويمكنك إضافة كود اللون بعد | إذا رغبت.</div></div><div class="field"><label>📦 حالة العرض</label><div class="stock-admin-row"><button type="button" id="stockAvailableBtn" class="stock-admin-btn" onclick="setProductStock(true)">🟢 متوفر الآن</button><button type="button" id="stockSoldoutBtn" class="stock-admin-btn" onclick="setProductStock(false)">⚪ نفذت الكمية</button></div></div><div class="field"><label>المدن التي يظهر فيها العرض</label><div class="muted">اختر المدن. إذا لم تختر أي مدينة سيظهر العرض في جميع المدن.</div><div id="productCities" class="city-checks"></div></div><div class="field"><label>الوصف</label><textarea id="pDesc" rows="3"></textarea></div><button type="button" class="success" onclick="saveProduct()">💾 حفظ العرض</button></div></div>
-
-<div class="modal" id="shareErrorModal"><div class="box" style="max-width:560px"><div class="notice-box"><div class="notice-icon"></div><h2>رابط الموقع غير جاهز</h2><p>هذه النسخة تعمل كملف محلي على جهازك، لذلك لا يمكن إنشاء رابط عام منها. انشر الموقع أولًا على استضافة، ثم ضع الرابط في خانة <b>رابط الموقع العام</b> داخل الإعدادات.</p><button class="primary" onclick="closeModal('shareErrorModal')">حسنًا</button></div></div></div>
-<div class="modal" id="deliveryPickerModal"><div class="box welcome"><button class="back-btn" onclick="closeModal('deliveryPickerModal')">↩️ السابق</button><div class="notice-icon">📍</div><h2>📍 اختر مكان التوصيل</h2><p class="muted">اختر المنطقة المناسبة، وسيتم إضافة سعر التوصيل إلى الفاتورة.</p><div id="deliveryPickerList" class="delivery-picker-list"></div></div></div>
-<div class="modal" id="sizePickerModal"><div class="box welcome"><button class="back-btn" onclick="closeModal('sizePickerModal')">↩️ السابق</button><h2>اختر المقاس</h2><p class="muted">اختر المقاس المطلوب لهذا الشكل.</p><div id="modalSizeGrid" class="modal-size-grid"></div></div></div>
-<button id="floatingOrder" class="floating-order" onclick="openCheckout()">🛒 طلب الآن <span id="floatingOrderCount">0</span></button><div id="supportDock"><button id="supportWhatsApp" class="support-whatsapp" onclick="supportWhatsApp()"><span class="support-wa-icon" aria-label="واتساب" title="واتساب"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M19.11 17.2c-.27-.14-1.6-.79-1.85-.88-.25-.09-.43-.14-.61.14-.18.27-.7.88-.86 1.06-.16.18-.32.2-.59.07-.27-.14-1.13-.42-2.15-1.34-.79-.7-1.33-1.57-1.49-1.84-.16-.27-.02-.42.12-.56.12-.12.27-.32.41-.48.14-.16.18-.27.27-.45.09-.18.05-.34-.02-.48-.07-.14-.61-1.47-.84-2.02-.22-.53-.45-.46-.61-.47h-.52c-.18 0-.47.07-.72.34-.25.27-.94.92-.94 2.24s.96 2.6 1.09 2.78c.14.18 1.89 2.89 4.57 4.05.64.28 1.14.45 1.53.58.64.2 1.22.17 1.68.1.51-.08 1.6-.65 1.82-1.27.23-.63.23-1.17.16-1.27-.07-.11-.25-.18-.52-.32z" fill="currentColor"/><path d="M16.03 3.2c-7.06 0-12.8 5.74-12.8 12.8 0 2.26.6 4.38 1.64 6.22L3.1 28.8l6.74-1.72a12.75 12.75 0 0 0 6.19 1.6h.01c7.06 0 12.8-5.74 12.8-12.8S23.09 3.2 16.03 3.2zm0 23.38h-.01c-2.05 0-4.06-.55-5.81-1.6l-.42-.25-4 1.02 1.07-3.9-.27-.42a10.62 10.62 0 1 1 9.44 5.15z" fill="currentColor"/></svg></span><span>هل تواجه مشكلة؟ الانتقال إلى واتساب</span></button></div>
-<div id="toast" style="position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--green);color:#fff;padding:12px 18px;border-radius:999px;opacity:0;pointer-events:none;z-index:100;transition:.25s;font-weight:800"></div>
-<script>
-const LOGO='data:image/jpeg;base64,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
+<div id="statsTab" style="di
