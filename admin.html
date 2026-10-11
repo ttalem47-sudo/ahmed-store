@@ -85,9 +85,17 @@ addEventListener('error',e=>showErr('JS: '+e.message));
 addEventListener('unhandledrejection',e=>showErr('Promise: '+((e.reason&&e.reason.message)||e.reason)));
 
 /* ===== الحالة ===== */
-const DEF={shop:{name:'Ahmed Store',wa:'249122970741'},categories:[],products:[],regions:[]};
-let S=DEF,tab='orders',filter='جديد',orders=[],visits=0,editId=null,pImg='';
-const TABS=[['orders','📦 الطلبات'],['offers','🛍️ العروض'],['cats','🗂️ الأقسام'],['regions','📍 المناطق'],['set','⚙️ الإعدادات']];
+const DEF={shop:{name:'Ahmed Store',wa:'249122970741'},regions:[]};
+function norm(s){
+  s.regions=(s.regions||[]).map((r,k)=>({id:r.id||'r'+k,name:r.name||'',wa:r.wa||'',categories:r.categories||[],products:r.products||[],zones:r.zones||(r.price!==undefined?[{name:r.name,price:r.price}]:[])}));
+  if(s.regions[0]&&((s.categories||[]).length||(s.products||[]).length)){const r=s.regions[0];r.categories=[...s.categories,...r.categories];r.products=[...(s.products||[]),...r.products]}
+  delete s.categories;delete s.products;return s;
+}
+
+let S=DEF,RID=null,rtab='offers',tab='orders',filter='جديد',orders=[],visits=0,editId=null,pImg='';
+const TABS=[['orders','📦 الطلبات'],['regions','📍 المناطق'],['set','⚙️ الإعدادات']];
+const RT=[['offers','🛍️ العروض'],['cats','🗂️ الأقسام'],['zones','🚚 التوصيل'],['rset','⚙️ المنطقة']];
+const R_=()=>S.regions.find(r=>r.id===RID)||null;
 
 /* ===== الدخول ===== */
 async function boot(){
@@ -103,7 +111,7 @@ async function login(){
 async function enter(){
   $('login').hidden=true;$('app').hidden=false;$('out').hidden=false;
   const r=await sb.from('store_state').select('state').eq('id',1).maybeSingle();
-  if(r.data&&r.data.state)S={...DEF,...r.data.state};
+  if(r.data&&r.data.state)S=norm({...DEF,...r.data.state});
   const st=await sb.from('store_stats').select('stats').eq('id',1).maybeSingle();
   visits=(st.data&&st.data.stats&&st.data.stats.visits)||0;
   await loadOrders();draw();
@@ -120,8 +128,10 @@ async function loadOrders(){
 
 /* ===== الرسم ===== */
 function draw(){
-  $('tabs').innerHTML=TABS.map(([k,n])=>`<button class="chip ${k===tab?'on':''}" data-tab="${k}">${n}</button>`).join('');
-  $('view').innerHTML=({orders:vOrders,offers:vOffers,cats:vCats,regions:vRegions,set:vSet})[tab]();
+  if(RID&&!R_())RID=null;
+  const inReg=tab==='regions'&&RID;
+  $('tabs').innerHTML=inReg?`<button class="chip" data-act="regBack">‹ المناطق</button>`+RT.map(([k,n])=>`<button class="chip ${k===rtab?'on':''}" data-rtab="${k}">${n}</button>`).join(''):TABS.map(([k,n])=>`<button class="chip ${k===tab?'on':''}" data-tab="${k}">${n}</button>`).join('');
+  $('view').innerHTML=inReg?`<h2 style="margin:4px 0 12px">📍 ${esc(R_().name)}</h2>`+({offers:vOffers,cats:vCats,zones:vZones,rset:vRset})[rtab]():({orders:vOrders,regions:vRegionList,set:vSet})[tab]();
 }
 function vOrders(){
   const ST=['جديد','تم التسليم','محذوف'];
@@ -130,7 +140,7 @@ function vOrders(){
   <div style="display:flex;gap:8px;margin-bottom:12px">${ST.map(s=>`<button class="chip ${s===filter?'on':''}" data-filter="${s}">${s} (${orders.filter(o=>o.status===s).length})</button>`).join('')}</div>`+
   (list.length?list.map(o=>{const d=o.order||{},c=d.customer||{};return `<div class="box"><div class="row"><b>طلب رقم ${o.order_number}</b><span class="muted">${new Date(o.created_at).toLocaleString('ar-EG')}</span></div>
   <p style="margin-top:6px">👤 ${esc(c.name)} — <a href="tel:${esc(c.phone)}">${esc(c.phone)}</a></p>
-  <p class="muted">${d.mode==='pickup'?'🏬 استلام من المحل':`🚚 ${esc(d.region)} — ${esc(c.address)}`}</p>
+  <p class="muted">📍 ${esc(d.region||'')} — ${d.mode==='pickup'?'🏬 استلام من المحل':`🚚 ${esc(d.zone||'')} — ${esc(c.address)}`}</p>
   <div style="margin-top:8px">${(d.items||[]).map(i=>`<div class="row"><span>${i.qty} × ${esc(i.name)}${i.note?` (${esc(i.note)})`:''}</span><span>${money(i.price*i.qty)}</span></div>`).join('')}</div>
   ${c.notes?`<p class="muted" style="margin-top:6px">📝 ${esc(c.notes)}</p>`:''}
   <div class="row" style="margin-top:8px"><span>التوصيل: ${money(d.deliveryPrice)}</span><b>الإجمالي: ${money(d.total)}</b></div>
@@ -139,17 +149,28 @@ function vOrders(){
   <a class="btn ghost" style="text-decoration:none" target="_blank" href="https://wa.me/${String(c.phone||'').replace(/\D/g,'')}">📲 واتساب</a></div></div>`}).join(''):`<p class="empty">لا توجد طلبات هنا.</p>`);
 }
 function vOffers(){
+  const R=R_();
   return `<button class="btn" style="width:100%;margin-bottom:12px" data-act="newP">+ إضافة عرض</button>`+
-  (S.products.length?S.products.map(p=>`<div class="box row"><div class="row" style="gap:12px;justify-content:flex-start">${img(p.image)?`<img class="thumb" src="${esc(img(p.image))}" alt="">`:'<div class="thumb"></div>'}<div><b>${esc(p.name)}</b><div class="muted">${money(p.price)} · ${esc((S.categories.find(c=>c.id===p.category)||{}).name||'بدون قسم')}</div>${p.soldOut?'<span class="tag">نفدت الكمية</span>':''}</div></div>
-  <div class="acts" style="margin:0"><button class="btn ghost" data-editp="${esc(p.id)}">تعديل</button><button class="btn bad" data-delp="${esc(p.id)}">حذف</button></div></div>`).join(''):'<p class="empty">لا توجد عروض. أضف أول عرض.</p>');
+  (R.products.length?R.products.map(p=>`<div class="box row"><div class="row" style="gap:12px;justify-content:flex-start">${img(p.image)?`<img class="thumb" src="${esc(img(p.image))}" alt="">`:'<div class="thumb"></div>'}<div><b>${esc(p.name)}</b><div class="muted">${money(p.price)} · ${esc((R.categories.find(c=>c.id===p.category)||{}).name||'بدون قسم')}</div>${p.soldOut?'<span class="tag">نفدت الكمية</span>':''}</div></div>
+  <div class="acts" style="margin:0"><button class="btn ghost" data-editp="${esc(p.id)}">تعديل</button><button class="btn bad" data-delp="${esc(p.id)}">حذف</button></div></div>`).join(''):'<p class="empty">لا توجد عروض في هذه المنطقة.</p>');
 }
 function vCats(){
+  const R=R_();
   return `<div class="box"><label>اسم قسم جديد</label><input id="newCat"><div class="acts"><button class="btn" data-act="addCat">إضافة القسم</button></div></div>`+
-  S.categories.map(c=>`<div class="box row"><b>${esc(c.name)}</b><button class="btn bad" data-delc="${esc(c.id)}">حذف</button></div>`).join('');
+  R.categories.map(c=>`<div class="box row"><b>${esc(c.name)}</b><button class="btn bad" data-delc="${esc(c.id)}">حذف</button></div>`).join('');
 }
-function vRegions(){
-  return `<div class="box"><label>اسم المنطقة</label><input id="rn"><label>سعر التوصيل (جنيه)</label><input id="rp" type="number" inputmode="numeric" min="0"><div class="acts"><button class="btn" data-act="addReg">إضافة المنطقة</button></div></div>`+
-  S.regions.map((r,k)=>`<div class="box row"><span><b>${esc(r.name)}</b> — ${money(r.price)}</span><button class="btn bad" data-delr="${k}">حذف</button></div>`).join('');
+function vRegionList(){
+  return `<div class="box"><label>اسم منطقة جديدة</label><input id="rn"><div class="acts"><button class="btn" data-act="addReg">إضافة المنطقة</button></div></div>`+
+  (S.regions.length?S.regions.map(r=>`<div class="box row"><span><b>📍 ${esc(r.name)}</b><div class="muted">${r.products.length} عرض · ${r.categories.length} قسم · ${r.zones.length} جهة توصيل</div></span><div class="acts" style="margin:0"><button class="btn" data-openr="${esc(r.id)}">إدارة</button><button class="btn bad" data-delr="${esc(r.id)}">حذف</button></div></div>`).join(''):'<p class="empty">لا توجد مناطق. أضف أول منطقة.</p>');
+}
+function vZones(){
+  const R=R_();
+  return `<div class="box"><label>اسم جهة التوصيل</label><input id="zn"><label>السعر (جنيه)</label><input id="zp" type="number" inputmode="numeric" min="0"><div class="acts"><button class="btn" data-act="addZone">إضافة</button></div></div>`+
+  R.zones.map((z,k)=>`<div class="box row"><span><b>${esc(z.name)}</b> — ${money(z.price)}</span><button class="btn bad" data-delz="${k}">حذف</button></div>`).join('');
+}
+function vRset(){
+  const R=R_();
+  return `<div class="box"><label>اسم المنطقة</label><input id="rnm" value="${esc(R.name)}"><label>واتساب خاص بالمنطقة (اختياري — يترك فارغاً لرقم المتجر)</label><input id="rwa" type="tel" value="${esc(R.wa)}"><div class="acts"><button class="btn" data-act="saveR">حفظ</button></div></div>`;
 }
 function vSet(){
   return `<div class="box"><label>اسم المتجر</label><input id="sn" value="${esc(S.shop.name)}"><label>رقم واتساب لاستلام الطلبات (بالصيغة الدولية)</label><input id="sw" type="tel" value="${esc(S.shop.wa)}" placeholder="249122970741"><div class="acts"><button class="btn" data-act="saveSet">حفظ الإعدادات</button></div></div>`;
@@ -157,10 +178,10 @@ function vSet(){
 
 /* ===== نموذج العرض ===== */
 function openP(id){
-  editId=id||null;const p=S.products.find(x=>x.id===id)||{};
+  editId=id||null;const R=R_(),p=R.products.find(x=>x.id===id)||{};
   $('pTitle').textContent=id?'تعديل العرض':'عرض جديد';
   $('pn').value=p.name||'';$('pp').value=p.price??'';$('pd').value=p.desc||'';$('ps').checked=!!p.soldOut;$('pf').value='';
-  $('pc').innerHTML=S.categories.map(c=>`<option value="${esc(c.id)}" ${c.id===p.category?'selected':''}>${esc(c.name)}</option>`).join('')||'<option value="">أضف قسماً أولاً</option>';
+  $('pc').innerHTML=R.categories.map(c=>`<option value="${esc(c.id)}" ${c.id===p.category?'selected':''}>${esc(c.name)}</option>`).join('')||'<option value="">أضف قسماً أولاً</option>';
   pImg=p.image||'';$('pv').hidden=!pImg;if(pImg)$('pv').src=pImg;
   $('pSheet').classList.add('open');
 }
@@ -173,7 +194,7 @@ async function saveP(){
   const name=$('pn').value.trim(),price=Number($('pp').value);
   if(!name||!(price>=0)||$('pp').value==='')return toast('اكتب اسم العرض وسعره');
   const p={id:editId||'p'+Date.now(),name,price,category:$('pc').value,desc:$('pd').value.trim(),image:pImg,soldOut:$('ps').checked};
-  const i=S.products.findIndex(x=>x.id===p.id);i>=0?S.products[i]=p:S.products.unshift(p);
+  const R=R_(),i=R.products.findIndex(x=>x.id===p.id);i>=0?R.products[i]=p:R.products.unshift(p);
   if(await save()){$('pSheet').classList.remove('open');draw()}
 }
 
@@ -185,13 +206,19 @@ document.addEventListener('click',async e=>{
   else if(d.st){const r=await sb.from('orders').update({status:d.st,updated_at:new Date().toISOString()}).eq('id',d.id);if(r.error)return toast('❌ '+r.error.message);await loadOrders();draw()}
   else if(d.del){if(!confirm('حذف الطلب نهائياً؟'))return;const r=await sb.from('orders').delete().eq('id',d.del);if(r.error)return toast('❌ '+r.error.message);await loadOrders();draw()}
   else if(d.act==='reload'){await loadOrders();draw()}
-  else if(d.act==='newP'){if(!S.categories.length)return toast('أضف قسماً أولاً من تبويب الأقسام');openP()}
+  else if(d.rtab){rtab=d.rtab;draw()}
+  else if(d.openr){RID=d.openr;rtab='offers';draw()}
+  else if(d.act==='regBack'){RID=null;draw()}
+  else if(d.act==='newP'){if(!R_().categories.length)return toast('أضف قسماً أولاً من تبويب الأقسام');openP()}
   else if(d.editp)openP(d.editp);
-  else if(d.delp){if(!confirm('حذف هذا العرض؟'))return;S.products=S.products.filter(p=>p.id!==d.delp);await save();draw()}
-  else if(d.act==='addCat'){const n=$('newCat').value.trim();if(!n)return;S.categories.push({id:'c'+Date.now(),name:n});await save();draw()}
-  else if(d.delc){if(!confirm('حذف القسم؟'))return;S.categories=S.categories.filter(c=>c.id!==d.delc);await save();draw()}
-  else if(d.act==='addReg'){const n=$('rn').value.trim(),p=Number($('rp').value);if(!n||$('rp').value==='')return toast('اكتب المنطقة وسعر التوصيل');S.regions.push({name:n,price:p});await save();draw()}
-  else if(d.delr!==undefined){S.regions.splice(+d.delr,1);await save();draw()}
+  else if(d.delp){if(!confirm('حذف هذا العرض؟'))return;const R=R_();R.products=R.products.filter(p=>p.id!==d.delp);await save();draw()}
+  else if(d.act==='addCat'){const n=$('newCat').value.trim();if(!n)return;R_().categories.push({id:'c'+Date.now(),name:n});await save();draw()}
+  else if(d.delc){if(!confirm('حذف القسم؟'))return;const R=R_();R.categories=R.categories.filter(c=>c.id!==d.delc);await save();draw()}
+  else if(d.act==='addReg'){const n=$('rn').value.trim();if(!n)return toast('اكتب اسم المنطقة');S.regions.push({id:'r'+Date.now(),name:n,wa:'',categories:[],products:[],zones:[]});await save();draw()}
+  else if(d.delr){if(!confirm('حذف المنطقة بكل عروضها وأقسامها؟'))return;S.regions=S.regions.filter(r=>r.id!==d.delr);await save();draw()}
+  else if(d.act==='addZone'){const n=$('zn').value.trim(),p=Number($('zp').value);if(!n||$('zp').value==='')return toast('اكتب الجهة وسعر التوصيل');R_().zones.push({name:n,price:p});await save();draw()}
+  else if(d.delz!==undefined){R_().zones.splice(+d.delz,1);await save();draw()}
+  else if(d.act==='saveR'){const R=R_();R.name=$('rnm').value.trim()||R.name;R.wa=$('rwa').value.replace(/\D/g,'');await save();draw()}
   else if(d.act==='saveSet'){S.shop={name:$('sn').value.trim()||'Ahmed Store',wa:$('sw').value.replace(/\D/g,'')};await save()}
 });
 $('inBtn').onclick=login;$('pw').onkeydown=e=>{if(e.key==='Enter')login()};
