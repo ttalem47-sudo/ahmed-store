@@ -51,6 +51,7 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid v
 .badge{background:var(--bad);color:#fff;border-radius:999px;padding:1px 9px;font-size:12px;font-weight:800}
 .checks{display:grid;gap:6px;margin-top:6px}.checks label{margin:0;font-weight:500;display:flex;gap:8px;align-items:center}
 .sub{font-size:13px;color:var(--mut);padding-right:12px}
+.lb{position:fixed;inset:0;background:#000d;z-index:300;display:none;align-items:center;justify-content:center;padding:10px}.lb.open{display:flex}.lb img{max-width:100%;max-height:100%;border-radius:10px}
 [hidden]{display:none!important}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -83,6 +84,7 @@ input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid v
   <label><input type="checkbox" id="ps"> نفدت الكمية</label>
   <div class="cta"><button class="btn" type="button" id="pSave">حفظ العرض</button><button class="btn ghost" type="button" id="pCancel">إلغاء</button></div>
 </div></div>
+<div class="lb" id="lb"><img id="lbi" alt=""></div>
 <div id="toast"></div><div id="err"></div>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
@@ -104,7 +106,7 @@ addEventListener('error',e=>showErr('JS: '+e.message));
 addEventListener('unhandledrejection',e=>showErr('Promise: '+((e.reason&&e.reason.message)||e.reason)));
 const DEF={shop:{name:'Ahmed Store',wa:'249122970741'},regions:[]};
 function norm(s){
-  s.regions=list(s.regions).map((r,k)=>({id:r.id||'r'+k,name:r.name||'',wa:r.wa||'',note:r.note||'',categories:list(r.categories),pickups:list(r.pickups),
+  s.regions=list(s.regions).map((r,k)=>({id:r.id||'r'+k,name:r.name||'',wa:r.wa||'',note:r.note||'',closed:!!r.closed,categories:list(r.categories),pickups:list(r.pickups),
     deliveries:list(r.deliveries).length?r.deliveries:list(r.zones).length?r.zones:(r.price!==undefined?[{name:r.name,price:r.price}]:[]),
     products:list(r.products).map(p=>({...p,images:list(p.images).length?p.images:(p.image?[p.image]:[]),sizes:list(p.sizes),colors:list(p.colors)}))}));
   const r0=s.regions[0];
@@ -157,15 +159,17 @@ function draw(){
 const addBox=(title,fields,act,btn)=>`<div class="box"><b>${title}</b>${fields}<div class="acts"><button class="btn" data-act="${act}">${btn}</button></div></div>`;
 function vRegions(){
   return addBox('منطقة جديدة','<label>اسم المنطقة</label><input id="rn" maxlength="40">','addReg','إضافة المنطقة')+
-  (S.regions.length?S.regions.map(r=>{const n=ordersOf(r).filter(o=>o.status==='جديد').length;return `<div class="box row"><span><b>📍 ${esc(r.name)}</b> ${n?`<span class="badge">${n} جديد</span>`:''}<div class="muted">${r.products.length} عرض · ${r.categories.length} قسم · ${r.deliveries.length} توصيل · ${r.pickups.length} استلام</div></span><div class="acts" style="margin:0"><button class="btn" data-openr="${esc(r.id)}">إدارة</button><button class="btn bad" data-delr="${esc(r.id)}">حذف</button></div></div>`}).join(''):'<p class="empty">لا توجد مناطق. أضف أول منطقة.</p>');
+  (S.regions.length?S.regions.map(r=>{const n=ordersOf(r).filter(o=>o.status==='جديد').length;return `<div class="box row"><span><b>📍 ${esc(r.name)}</b> ${r.closed?'<span class="tag">مغلقة</span> ':''}${n?`<span class="badge">${n} جديد</span>`:''}<div class="muted">${r.products.length} عرض · ${r.categories.length} قسم · ${r.deliveries.length} توصيل · ${r.pickups.length} استلام</div></span><div class="acts" style="margin:0"><button class="btn" data-openr="${esc(r.id)}">إدارة</button><button class="btn bad" data-delr="${esc(r.id)}">حذف</button></div></div>`}).join(''):'<p class="empty">لا توجد مناطق. أضف أول منطقة.</p>');
 }
+const itemImg=(i,rid)=>{const r=S.regions.find(x=>x.id===rid),p=r&&r.products.find(x=>x.id===i.id);return {full:img(p&&p.images&&p.images[0])||img(i.thumb),th:img(i.thumb)||img(p&&p.images&&p.images[0])}};
+const rowOf=(i,k,o)=>{const m=itemImg(i,(o.order||{}).regionId);return `<div class="row"><span class="row" style="gap:10px;justify-content:flex-start">${m.th?`<img class="thumb" style="width:56px;height:56px;cursor:zoom-in" src="${esc(m.th)}" data-oz="${esc(o.id)}:${k}" alt="">`:''}<span>${list(i.pieces).length} × ${esc(i.name)}</span></span><span>${money(i.price*list(i.pieces).length)}</span></div>`};
 function vOrders(){
   const all=ordersOf(R_()),ST=['جديد','تم التسليم','محذوف'],ls=all.filter(o=>o.status===filter);
   return `<div style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap">${ST.map(s=>`<button class="chip ${s===filter?'on':''}" data-filter="${s}">${s} (${all.filter(o=>o.status===s).length})</button>`).join('')}<button class="chip" data-act="reload">تحديث</button></div>`+
   (ls.length?ls.map(o=>{const d=o.order||{},c=d.customer||{};return `<div class="box"><div class="row"><b>طلب رقم ${o.order_number}</b><span class="muted">${new Date(o.created_at).toLocaleString('ar-EG')}</span></div>
   <p style="margin-top:6px">👤 ${esc(c.name)} — <a href="tel:${esc(c.phone)}">${esc(c.phone)}</a>${c.phone2?` / <a href="tel:${esc(c.phone2)}">${esc(c.phone2)}</a>`:''}</p>
   <p class="muted">${d.mode==='pickup'?`🏬 استلام: ${esc(d.method)} ${esc(d.pickupAddress)}`:`🚚 ${esc(d.method)} — ${esc(c.address)}`}</p>
-  <div style="margin-top:8px">${list(d.items).map(i=>`<div class="row"><span>${list(i.pieces).length} × ${esc(i.name)}</span><span>${money(i.price*list(i.pieces).length)}</span></div>`+list(i.pieces).map((p,j)=>(p.size||p.color)?`<div class="sub">قطعة ${j+1}: ${esc([p.size,p.color].filter(Boolean).join(' / '))}</div>`:'').join('')).join('')}</div>
+  <div style="margin-top:8px">${list(d.items).map((i,k)=>rowOf(i,k,o)+list(i.pieces).map((p,j)=>(p.size||p.color)?`<div class="sub">قطعة ${j+1}: ${esc([p.size,p.color].filter(Boolean).join(' / '))}</div>`:'').join('')).join('')}</div>
   ${c.notes?`<p class="muted" style="margin-top:6px">📝 ${esc(c.notes)}</p>`:''}
   <div class="row" style="margin-top:8px"><span>التوصيل: ${money(d.deliveryPrice)}</span><b>الإجمالي: ${money(d.total)}</b></div>
   <div class="acts">${o.status==='جديد'?`<button class="btn ok" data-st="تم التسليم" data-id="${o.id}">✅ تم التسليم</button>`:`<button class="btn ghost" data-st="جديد" data-id="${o.id}">↩ إرجاع للجديدة</button>`}
@@ -182,8 +186,8 @@ const delRows=(arr,key,fmt)=>arr.map((x,k)=>`<div class="box row"><span>${fmt(x)
 function vCats(){const R=R_();return addBox('قسم جديد (مثل: ملابس رجالية)','<label>اسم القسم</label><input id="newCat" maxlength="40">','addCat','إضافة القسم')+R.categories.map(c=>`<div class="box row"><b>${esc(c.name)}</b><button class="btn bad" data-delc="${esc(c.id)}">حذف</button></div>`).join('')}
 function vDlv(){const R=R_();return addBox('طريقة توصيل جديدة','<label>اسم الطريقة</label><input id="zn" maxlength="40" placeholder="مثال: توصيل داخل المدينة"><label>السعر (جنيه)</label><input id="zp" type="number" inputmode="numeric" min="0">','addDlv','إضافة')+delRows(R.deliveries,'deld',z=>`<b>${esc(z.name)}</b> — ${money(z.price)}`)}
 function vPick(){const R=R_();return addBox('مكان استلام جديد','<label>اسم المكان</label><input id="kn" maxlength="40" placeholder="مثال: المحل الرئيسي"><label>العنوان</label><input id="ka" maxlength="120">','addPick','إضافة')+delRows(R.pickups,'delk',k=>`<b>${esc(k.name)}</b><div class="muted">${esc(k.address)}</div>`)}
-function vRset(){const R=R_();return `<div class="box"><label>اسم المنطقة</label><input id="rnm" maxlength="40" value="${esc(R.name)}"><label>واتساب خاص بالمنطقة (اختياري)</label><input id="rwa" type="tel" value="${esc(R.wa)}"><label>ملاحظة تظهر للزبائن في هذه المنطقة (اختياري)</label><textarea id="rnote" rows="2" maxlength="200">${esc(R.note)}</textarea><div class="acts"><button class="btn" data-act="saveR">حفظ</button></div></div>`}
-function vSet(){return `<div class="box row"><span>👁 الزيارات: <b>${visits}</b></span></div><div class="box"><label>اسم المتجر</label><input id="sn" maxlength="40" value="${esc(S.shop.name)}"><label>واتساب المتجر (بالصيغة الدولية)</label><input id="sw" type="tel" value="${esc(S.shop.wa)}" placeholder="249122970741"><div class="acts"><button class="btn" data-act="saveSet">حفظ الإعدادات</button></div></div>`}
+function vRset(){const R=R_();return `<div class="box"><label>اسم المنطقة</label><input id="rnm" maxlength="40" value="${esc(R.name)}"><label>واتساب استلام طلبات هذه المنطقة (اختياري — يُترك فارغاً لرقم المتجر)</label><input id="rwa" type="tel" value="${esc(R.wa)}"><label>ملاحظة تظهر للزبائن في هذه المنطقة (اختياري)</label><textarea id="rnote" rows="2" maxlength="200">${esc(R.note)}</textarea><label><input type="checkbox" id="rclosed" ${R.closed?'checked':''}> المنطقة مغلقة مؤقتاً (لا يستطيع الزبائن الطلب منها)</label><div class="acts"><button class="btn" data-act="saveR">حفظ</button></div></div>`}
+function vSet(){return `<div class="box row"><span>👁 الزيارات: <b>${visits}</b></span></div><div class="box"><label>اسم المتجر</label><input id="sn" maxlength="40" value="${esc(S.shop.name)}"><label>واتساب استلام الطلبات (بالصيغة الدولية)</label><input id="sw" type="tel" value="${esc(S.shop.wa)}" placeholder="249122970741"><label>واتساب الإرساليات (اختياري — يُترك فارغاً لاستخدام الرقم أعلاه)</label><input id="sw2" type="tel" value="${esc(S.shop.shipWa||'')}" placeholder="249122970741"><div class="acts"><button class="btn" data-act="saveSet">حفظ الإعدادات</button></div></div>`}
 
 /* ===== نموذج العرض ===== */
 function drawImgs(){$('pimgs').innerHTML=pImgs.map((u,i)=>`<div><img class="thumb" src="${esc(u)}" alt="">${i===0?'<i>رئيسية</i>':''}<button type="button" data-rmimg="${i}" aria-label="حذف الصورة">✕</button></div>`).join('')}
@@ -241,10 +245,11 @@ document.addEventListener('click',async e=>{
   else if(d.deld!==undefined)act(()=>R.deliveries.splice(+d.deld,1));
   else if(d.act==='addPick'){if(!v('kn'))return toast('اكتب اسم مكان الاستلام');act(()=>R.pickups.push({name:v('kn'),address:v('ka')}))}
   else if(d.delk!==undefined)act(()=>R.pickups.splice(+d.delk,1));
-  else if(d.act==='saveR')act(()=>{R.name=v('rnm')||R.name;R.wa=$('rwa').value.replace(/\D/g,'');R.note=v('rnote')});
-  else if(d.act==='saveSet')act(()=>{S.shop={name:v('sn')||'Ahmed Store',wa:$('sw').value.replace(/\D/g,'')}});
+  else if(d.act==='saveR')act(()=>{R.name=v('rnm')||R.name;R.wa=$('rwa').value.replace(/\D/g,'');R.note=v('rnote');R.closed=$('rclosed').checked});
+  else if(d.act==='saveSet')act(()=>{S.shop={name:v('sn')||'Ahmed Store',wa:$('sw').value.replace(/\D/g,''),shipWa:$('sw2').value.replace(/\D/g,'')}});
   else if(d.rmimg!==undefined){pImgs.splice(+d.rmimg,1);drawImgs()}
 });
+document.addEventListener('click',e=>{const z=e.target.closest('[data-oz]');if(z){const [id,k]=z.dataset.oz.split(':'),o=orders.find(x=>x.id===id),it=o&&list(o.order.items)[+k];if(it){$('lbi').src=itemImg(it,o.order.regionId).full;$('lb').classList.add('open')}}else if(e.target.closest('#lb'))$('lb').classList.remove('open')});
 $('inBtn').onclick=login;$('pw').onkeydown=e=>{if(e.key==='Enter')login()};
 $('out').onclick=async()=>{await sb.auth.signOut();location.reload()};
 $('pSave').onclick=saveP;$('pCancel').onclick=()=>$('pSheet').classList.remove('open');
