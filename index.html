@@ -85,37 +85,6 @@ label{display:block;font-size:.86rem;color:var(--muted);margin-bottom:4px}.field
 .toast{position:fixed;bottom:calc(88px + env(safe-area-inset-bottom,0px));left:0;right:0;margin-inline:auto;width:max-content;max-width:90%;background:var(--gold2);color:var(--on-gold);padding:9px 20px;border-radius:999px;font-weight:800;font-size:.9rem;opacity:0;transform:translateY(10px);transition:.2s;pointer-events:none;z-index:130}.toast.show{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
-  /* إصلاح عرض الشاشة على الهواتف */
-html,
-body {
-  width: 100%;
-  min-width: 0;
-}
-
-.screen {
-  width: 100%;
-  min-width: 0;
-}
-
-.bar {
-  width: 100%;
-}
-
-.wrap {
-  width: 100%;
-  max-width: 560px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-@media screen and (max-width: 600px) {
-  .wrap {
-    width: 100%;
-    max-width: 100%;
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-}
 </head>
 <body>
 <section class="screen on" id="intro" aria-label="الشاشة الافتتاحية">
